@@ -7,7 +7,7 @@ const arg1 = `aapl`
 // Initial Date YYYY-MM-DD
 const arg2 = `2018-01-01`
 // End Date YYYY-MM_DD
-const arg3 = `2018-01-05`
+const arg3 = `2018-02-01`
 // API KEY
 const arg4 = "xGVHzXL81RZT89Jvks6a"
 
