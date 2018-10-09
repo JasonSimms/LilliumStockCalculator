@@ -2,70 +2,81 @@ const axios = require("axios");
 
 // Function prints Return on investment
 function rateOfReturn(arrStart, arrEnd) {
-  let ror = arrStart[4] - arrEnd[4];
-  // console.log(`start`, arrStart[4],`end`,arrEnd[4])
+  let ror = arrEnd[4] - arrStart[4];
   let rorPercent = (ror / arrStart[4]) * 100;
-  rorOutputString = `Return: ${ror.toFixed(2)} (${rorPercent.toFixed(
-    1
-  )}%) in the range of ${arrStart[0]} - ${arrEnd[0]}`;
+  rorOutputString = `Return: $${ror.toFixed(2)} [${rorPercent.toFixed(1)}%] ( ${
+    arrStart[4]
+  } on ${arrStart[0]} -> ${arrEnd[4]} on ${arrEnd[0]} )`;
   console.log(rorOutputString);
 }
 
-// Function prints Daily Drawdown & Max Drawdown
+// Function  prints Max Drawdown and array of daily drawdowns
 // Drowdowns occur only when a new peak is reached
-// Consider pushing drawdowns to an array.
 function dailyDrawdown(arr) {
-  arr = arr.reverse();
   let peak = 0;
   let peakDate;
-  let drawDownArr = [];
-  let maxDD = { drawdown: 0, peak: 0, pDate: 0, trough: 0, tDate: 0 };
+  let ddArr = [];
+  let maxDD = {drawdown: 0};
   arr.forEach(el => {
     if (el[2] > peak) {
       peak = el[2];
       peakDate = el[0];
     }
     let drawDown = Math.min(0, (((el[3] - peak) / peak) * 100).toFixed(1));
-    drawDownArr.push(
-      {
-        drawdown: Number(drawDown),
-        peak: peak,
-        peakDate: peakDate,
-        trough: el[3],
-        troughDate: el[0]
-      }
-      ) 
-    // outputString = `${drawDown}% for (Peak: ${peak} on ${peakDate} - Low:${
-    //   el[3]
-    // } on ${date})`;
+    ddArr.push({
+      drawdown: Number(drawDown),
+      peak: peak,
+      pDate: peakDate,
+      trough: el[3],
+      tDate: el[0]
+    });
+
+    // store maximum drawdown
     if (drawDown < maxDD.drawdown)
       maxDD = {
         drawdown: Number(drawDown),
         peak: peak,
-        peakDate: peakDate,
+        pDate: peakDate,
         trough: el[3],
-        troughDate: el[0]
+        tDate: el[0]
       };
   });
-  console.log(`Maximum Drawdown: `, maxDD);
-  console.log(`Daily Drawdowns: `, drawDownArr)
+maxDDOutput = `
+Maximium Drawdown: ${maxDD.drawdown}% (${maxDD.peak} on ${maxDD.pDate} -> ${maxDD.trough} on ${maxDD.tDate})
+`
+  console.log(maxDDOutput);
+  console.log(`
+  First 3 Daily Drawdowns: `,
+  ddArr.slice(0, 3));
+  console.log('')
+}
+
+// Print stock prices for time range
+function printEOD(arr) {
+  arr.forEach(el => {
+    console.log(`${el[0]}: Closed at ${el[4]} (${el[3]} ~ ${el[2]})`);
+  });
 }
 
 // Function requests price data using variables provided by user
 module.exports = function Lillium(stock, dayInit, dayEnd, key) {
-  let data = [];
-  // stock=stock.toString()
   axios
     .get(
-      `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&&api_key=${key}`
+      `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&order=asc&api_key=${key}`
     )
     .then(function(response) {
-      data = response.data.dataset.data;
-      rateOfReturn(data[0], data[data.length - 1]);
-      dailyDrawdown(data);
-
-      // console.log(data);
-      console.log(`-------------all done here------------`);
+      const data = response.data.dataset.data;
+      if (data.length === 0)
+        console.log(
+          `Source has no price data for this time range, check header for available time range`
+        );
+      if (data.length > 0) {
+        console.log(`-------------Begin Data for ${stock}------------`);
+        rateOfReturn(data[0], data[data.length - 1]);
+        dailyDrawdown(data);
+        printEOD(data);
+        console.log(`-------------End of Data for ${stock}------------`);
+      }
     })
     .catch(function(error) {
       console.log(error);

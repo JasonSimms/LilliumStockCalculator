@@ -3,17 +3,19 @@ const Lillium = require('./backend')
 // USER INPUT - ADJUST EQUATION INPUTS
 
 // Stock Ticker
-const arg1 = `aapl`
+const ticker = [`aapl`]
 // Initial Date YYYY-MM-DD
-const arg2 = `2018-01-20`
-// End Date YYYY-MM_DD
-const arg3 = `2018-02-01`
+const startDate = `2018-01-01`
+// End Date YYYY-MM_DD   ** EMPTY DATA SET will result if Quandl has no information.
+const endDate = `2018-01-05`
 // API KEY
-const arg4 = "xGVHzXL81RZT89Jvks6a"
+const apiKey = "xGVHzXL81RZT89Jvks6a"
 
 
-console.log(`Function fired for stock: ${arg1}` )
-Lillium(arg1,arg2,arg3,arg4)
+console.log(`Lillium Calculator initiated for stock(s): ${ticker} between ${startDate} - ${endDate} on key:${apiKey}` )
+
+// Lillium(ticker,startDate,endDate,apiKey)
+ticker.forEach(stock => Lillium(stock,startDate,endDate,apiKey))
 
 
 function sum(a, b) {
