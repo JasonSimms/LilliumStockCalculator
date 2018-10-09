@@ -1,0 +1,25 @@
+{
+  "name": "lilliumstockcalculator",
+  "version": "1.0.0",
+  "description": "A technical challenge to call stock prices and present requested analysis.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasonSimms/LilliumStockCalculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasonSimms/LilliumStockCalculator/issues"
+  },
+  "homepage": "https://github.com/JasonSimms/LilliumStockCalculator#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}

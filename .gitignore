@@ -1,0 +1,5 @@
+node_modules
+.env
+npm-debug.log
+docs
+https://www.quandl.com/api/v3/datasets/WIKI/AAPL.json?start_date=2018-01-01&end_date=2018-01-05&api_key=xGVHzXL81RZT89Jvks6a
