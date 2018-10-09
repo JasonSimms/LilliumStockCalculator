@@ -14,3 +14,9 @@ const arg4 = "xGVHzXL81RZT89Jvks6a"
 
 console.log(`Function fired for stock: ${arg1}` )
 Lillium(arg1,arg2,arg3,arg4)
+
+
+function sum(a, b) {
+    return a + b;
+  }
+  module.exports = sum;
