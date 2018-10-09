@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/JasonSimms/LilliumStockCalculator.git"
   },
-  "author": "",
+  "author": "Jason Simms",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/JasonSimms/LilliumStockCalculator/issues"
