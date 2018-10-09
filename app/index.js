@@ -5,7 +5,7 @@ const Lillium = require('./backend')
 // Stock Ticker
 const arg1 = `aapl`
 // Initial Date YYYY-MM-DD
-const arg2 = `2018-01-01`
+const arg2 = `2018-01-20`
 // End Date YYYY-MM_DD
 const arg3 = `2018-02-01`
 // API KEY
