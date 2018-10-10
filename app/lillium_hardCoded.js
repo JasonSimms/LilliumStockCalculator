@@ -1,13 +1,13 @@
-const lillium = require('./backend')
+const lillium = require('./index')
 const config = require("./config");
 
-// USER INPUT - ADJUST EQUATION INPUTS
 
+// USER INPUT - ADJUST EQUATION INPUTS
 // Stock Ticker
 const ticker = [`aapl`]
-// Initial Date YYYY-MM-DD  **Must be before 2018-03-27 when using Quandl
+// Initial Date YYYY-MM-DD  **Blank will result in earliest available date
 const startDate = `2018-03-01`
-// End Date YYYY-MM_DD  **Data Only Available up to 2018-03-27
+// End Date YYYY-MM_DD  ** Blank will result in up price info up to today
 const endDate = `2018-10-25`
 // API KEY **Create a config.js file that exports the key or simply enter below
 const apiKey = config.QuandlKey
@@ -15,10 +15,10 @@ const apiKey = config.QuandlKey
 
 console.log(`Lillium Calculator initiated for stock(s): ${ticker} between ${startDate} - ${endDate} on key:${apiKey}` )
 
-// Lillium(ticker,startDate,endDate,apiKey)
+// Execute Lillium function for the entire array of tickers.
 ticker.forEach(stock => lillium(stock,startDate,endDate,apiKey))
 
-
+// Test module for testing purposes
 function sum(a, b) {
     return a + b;
   }

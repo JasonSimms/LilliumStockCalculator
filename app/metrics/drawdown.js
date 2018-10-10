@@ -30,14 +30,15 @@ function dailyDrawdown(arr) {
         };
     });
   maxDDOutput = `Maximium Drawdown: ${maxDD.drawdown}% (${maxDD.peak} on ${maxDD.pDate} -> ${maxDD.trough} on ${maxDD.tDate})
-  `
+`
   firstThreeDDOutput = `First 3 Drawdowns: 
   ${ddArr[0].drawdown}% (${ddArr[0].peak} on ${ddArr[0].pDate} -> ${ddArr[0].trough} on ${ddArr[0].tDate})
   ${ddArr[1].drawdown}% (${ddArr[1].peak} on ${ddArr[1].pDate} -> ${ddArr[1].trough} on ${ddArr[1].tDate})
   ${ddArr[2].drawdown}% (${ddArr[2].peak} on ${ddArr[2].pDate} -> ${ddArr[2].trough} on ${ddArr[2].tDate})
   `
-    return(maxDDOutput);
+    // return(maxDDOutput);
     // return(firstThreeDDOutput);
+    console.log(maxDDOutput + firstThreeDDOutput)
   }
 
   module.exports = dailyDrawdown

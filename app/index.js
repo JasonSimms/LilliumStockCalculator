@@ -22,7 +22,7 @@ const apiUrl = `https://www.quandl.com/api/v3/datasets/EOD/${stock}.json?start_d
         console.time("Execution time");
         console.log(`-------------Begin Data for ${stock}------------`);
         console.log(rateOfReturn(data[0], data[data.length - 1]))
-        console.log(dailyDrawdown(data))
+        dailyDrawdown(data)
         printEOD(data)
         console.log(`-------------End of Data for ${stock}------------`);
         console.timeEnd("Execution time");
