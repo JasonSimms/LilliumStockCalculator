@@ -5,7 +5,7 @@ Evaluated with code controls from DeepScan :
 [![DeepScan grade](https://deepscan.io/api/projects/3366/branches/29890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&pid=3366&bid=29890)
 
 ### To USE:
-1. clone this repository and $ npm install
+1. clone this repository and $ cd LilliumStockCalculator && npm install
 2. $ node app/lillium.js or $ node app/lillium_hardCoded.js for repeated use or multiple stocks.
 3. Check console for a lovely printout!
 
@@ -42,5 +42,5 @@ Daily Price Performance:
 Execution time: 1.167ms
 
 ### NOTES
-* dates are in QUANDL friendly input.  Output for the printout message could be achieved using Moment.JS formatting but was ommitted for speed.
+* Displayed Dates are in QUANDL-friendly format.  Output for the printout message could be achieved using Moment.JS formatting but was ommitted for speed.
 * Minification or Uglifying could also improve execution speed.
