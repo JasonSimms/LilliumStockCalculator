@@ -1,8 +1,7 @@
-// Print stock prices for time range
+// Print stock prices for time range based on axios response from QUANDL.
 
 //QUANDL presents stock information in an array [date, open, high, low, close,...]
-//To use other sources adjust variables line 11 - 14.
-
+//To use other sources adjust variables wherever arr or el are referenced.
 function printEOD(arr) {
   if (arr.length === 0) {
     return "Price Performance: Data Sent Empty";

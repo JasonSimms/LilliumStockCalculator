@@ -18,22 +18,31 @@ function terminalMessage(arr) {
   } on ${arr.dds.maximumDrawDown.tDate})
   `;
 
-// Build drawdown String
-  let firstDDMessage =`First 3 Drawdowns: `+"\n"
-  let limit = Math.min(3,arr.dds.drawDownArr.length)
-  for(let i = 0; i<limit; i++){
-    firstDDMessage += `${arr.dds.drawDownArr[i].drawDown}% (${arr.dds.drawDownArr[i].peak} on ${
+  // Build drawdown String
+  let limit = Math.min(3, arr.dds.drawDownArr.length);
+  let firstDDMessage = `First Drawdowns: ` + "\n";
+  for (let i = 0; i < limit; i++) {
+    firstDDMessage +=
+      `${arr.dds.drawDownArr[i].drawDown}% (${arr.dds.drawDownArr[i].peak} on ${
         arr.dds.drawDownArr[i].pDate
-           } -> ${arr.dds.drawDownArr[i].trough} on ${arr.dds.drawDownArr[i].tDate})`+"\n"
+      } -> ${arr.dds.drawDownArr[i].trough} on ${
+        arr.dds.drawDownArr[i].tDate
+      })` + "\n";
   }
 
-// Build price history String
-  const historyMessage = printEOD(arr.raw)
-//   const historyMessage = "\n" 
+  // Build price history String
+  const historyMessage = printEOD(arr.raw);
+  //   const historyMessage = "\n"
 
-
-// Assemble and return
-  const outputMessage = returnMessage+"\n" +maximumDrawDownMessage+"\n"+firstDDMessage+"\n"+historyMessage;
+  // Assemble and return
+  const outputMessage =
+    returnMessage +
+    "\n" +
+    maximumDrawDownMessage +
+    "\n" +
+    firstDDMessage +
+    "\n" +
+    historyMessage;
   return outputMessage;
 }
 module.exports = terminalMessage;

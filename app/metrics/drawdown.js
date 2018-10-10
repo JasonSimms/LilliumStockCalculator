@@ -1,7 +1,8 @@
-// Function  prints Max Drawdown and array of daily drawdowns
+// This function calculates drawdowns on new peaks or deeper troughs and determines Max Drawdown
 
-//QUANDL presents stock information in an array [date, open, high, low, close,...]
-//To use other sources adjust variables line 12 - 14.
+// QUANDL presents stock information in an array [date, open, high, low, close,...]
+// To use other sources adjust variables wherever arr or el are used.
+
 function dailyDrawdown(arr) {
   if (arr.length === 0) {
     return "DrawDowns: Data Sent Empty";
@@ -62,12 +63,13 @@ function dailyDrawdown(arr) {
         };
     });
 
+    
+    // Output to as an object to array in index.js
     const ddOutput = {
       maximumDrawDown: maximumDrawDown,
-      drawDownArr: drawDownArr,
-    }
-
-    return ddOutput
+      drawDownArr: drawDownArr
+    };
+    return ddOutput;
   }
 }
 

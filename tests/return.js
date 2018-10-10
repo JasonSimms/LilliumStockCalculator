@@ -1,3 +1,5 @@
+// NEEDS TO BE REWRITTEN TO SUPPORT NEW OUTPUTS FROM metrics/return.js
+
 const rateOfReturn = require("../app/metrics/return");
 const testData = require('./testData')
 const testData1 = testData.testData1

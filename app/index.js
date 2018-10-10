@@ -1,16 +1,17 @@
+// This is the back-end control center of Lillium.
+// 1. First call the API and
+// 2. Use metrics to create a data object.
+// 3. Use results object to build an output.
 const axios = require("axios");
 const rateOfReturn = require("./metrics/return");
 const dailyDrawdown = require("./metrics/drawdown");
-const printEOD = require("./metrics/EODprint");
 const terminalMessage = require("./terminal_msg");
-
 require("colors");
 
 // Function requests price data using variables provided by user
 module.exports = function Lillium(stock, dayInit, dayEnd, key) {
   // const apiUrl = `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&order=asc&api_key=${key}`
   const apiUrl = `https://www.quandl.com/api/v3/datasets/EOD/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&order=asc&api_key=${key}`;
-
   axios
     .get(apiUrl)
     .then(function(response) {
@@ -28,9 +29,6 @@ module.exports = function Lillium(stock, dayInit, dayEnd, key) {
         console.time("Execution time");
         console.log(`-------------Begin Data for ${stock}------------`.grey);
         console.log(terminalMessage(results));
-        // console.log(rateOfReturn(data).bold)
-        // console.log(dailyDrawdown(data))
-        // console.log(printEOD(data))
         console.log(`-------------End of Data for ${stock}------------`.grey);
         console.timeEnd(`Execution time`);
       }

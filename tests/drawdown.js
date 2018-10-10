@@ -1,3 +1,5 @@
+// NEEDS TO BE ADJUSTED FOR NEW OUTPUT FROM metrics/DRAWDOWN.js
+
 const dailyDrawdown = require("../app/metrics/drawdown");
 const testData = require('./testData')
 const testData1 = testData.testData1

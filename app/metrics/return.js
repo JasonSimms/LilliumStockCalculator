@@ -1,7 +1,7 @@
-// Function prints Return on investment
+// Function calculates Return on investment and stores it in an object to be returned in index.js
 
 //QUANDL presents stock information in an array [date, open, high, low, close,...]
-//To use other sources adjust variables line 5 - 8.
+//To use other sources adjust variables line 10 - 13.
 function rateOfReturn(arr) {
   if (arr.length === 0) {
     return "Rate of Return: Data Sent Empty";
@@ -23,11 +23,9 @@ function rateOfReturn(arr) {
       startPrice: startPrice,
       endDate: endDate,
       endPrice: endPrice
-    }
+    };
 
-    return rorOutput
-
-   
+    return rorOutput;
   }
 }
 

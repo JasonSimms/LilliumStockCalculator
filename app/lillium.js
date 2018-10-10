@@ -4,7 +4,7 @@ const readline = require("readline");
 require('colors');
 
 
-// Define variables
+// Define needed shortcuts
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
@@ -12,12 +12,14 @@ const rl = readline.createInterface({
 
 
 // Greeting the user & Input Logic
-console.log(`Lillium.js`.black.bgWhite)
+console.log(`Lillium.js executed!`.black.bgWhite)
 console.log(`
-Welcome to the Lillium Analyzer in Node.js v1.0`.bold.blue)
+Welcome to the Lillium Analyzer in Node.js by Jason Simms v1.0`.bold.blue)
 console.log(`
 
-Usage: Prompts will follow, have your API key handy or create a config file.
+Usage: Prompts will follow, have your API key handy or complete config.js.
+
+Since API source is free to use I have included my key in config.js for your comfort. Just press X as suggested below!
 
 **Leaving Start Date blank will return all data available!
 **Leaving End Date blank will return all data up to today!
