@@ -41,5 +41,6 @@ Daily Price Performance:
 -------------End of Data for aapl------------
 Execution time: 1.167ms
 
-*note dates are in QUANDL friendly input.  Output for the printout message could be achieved using Moment.JS formatting but was ommitted for speed.
-*Minification or Uglifying could also improve execution speed.
+### NOTES
+* dates are in QUANDL friendly input.  Output for the printout message could be achieved using Moment.JS formatting but was ommitted for speed.
+* Minification or Uglifying could also improve execution speed.
