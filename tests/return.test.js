@@ -1,16 +1,11 @@
 const rateOfReturn = require("../app/metrics/return");
+const testData = require('./testData')
+const testData1 = testData.testData1
+const testData2 = testData.testData2
 
-//QUANDL presents stock information in an array [date, open, high, low, close,...]
-
-testData1 = [
-  ["2015-05-28", 9.58, 10.17, 12.96],
-  ["2015-05-27", 9.53, 10.13, 12.97],
-  ["2015-05-26", 9.53, 10.11, 12.98]
-];
-
-// test('adds 1 + 2 to equal 3', () => {
-//   expect(sum(1, 2)).toBe(3);
-// });
+test(`Empty data array returns empty message`, () => {
+  expect(rateOfReturn([])).toBe("Rate of Return: Data Sent Empty")
+});
 
 test(`rateOfReturn returns a string`, () => {
   expect(typeof(rateOfReturn(testData1))).toBe(`string`)
@@ -20,4 +15,16 @@ test('rateOfReturn prints a string beginning with "Return:"', () => {
   expect(rateOfReturn(testData1)).toMatch(
     /Return:/
   );
+});
+
+test('rateOfReturn calculates Rate of Return?', () => {
+  expect(rateOfReturn(testData2)).toMatch(/2.48/);
+});
+
+test('rateOfReturn calculates Rate of Return Percentage?', () => {
+  expect(rateOfReturn(testData2)).toMatch(/1.8%/);
+});
+
+test('rateOfReturn calculates on first and last data in array?', () => {
+  expect(rateOfReturn(testData2)).toMatch(/2018-01-02 ->/);
 });

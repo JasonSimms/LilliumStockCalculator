@@ -1,7 +1,7 @@
 // Import needed files
 const lillium = require("./index");
 const readline = require("readline");
-var colors = require('colors');
+require('colors');
 
 
 // Define variables

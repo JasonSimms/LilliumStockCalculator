@@ -2,7 +2,7 @@ const axios = require("axios");
 const rateOfReturn = require("./metrics/return")
 const dailyDrawdown = require("./metrics/drawdown")
 const printEOD = require("./metrics/EODprint")
-var colors = require('colors');
+require('colors');
 
 
 // Function requests price data using variables provided by user
