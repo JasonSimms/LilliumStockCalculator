@@ -5,12 +5,11 @@ Evaluated with code controls from DeepScan :
 [![DeepScan grade](https://deepscan.io/api/projects/3366/branches/29890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&pid=3366&bid=29890)
 
 ### To USE:
-1. clone this repository and $npm install
-2. node app/lillium.js
-⋅⋅* For repeated use or calling several stock tickers use $node app/lillium_hardCoded.js
+1. clone this repository and $ npm install
+2. $ node app/lillium.js or $ node app/lillium_hardCoded.js for repeated use or multiple stocks.
 3. Check console for a lovely printout!
 
-Requirements: Node.js & Axios & Npm & Internet Connection
+Requirements: Node.js & Npm & Internet Connection
 
 ### Testing: 
 $ npm test

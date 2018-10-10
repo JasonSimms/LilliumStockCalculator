@@ -10,7 +10,6 @@ function dailyDrawdown(arr) {
     let peak = 0;
     let peakDate;
     let trough = arr[0][3];
-    let troughDate;
     let drawDownArr = [];
     let maximumDrawDown = { drawDown: 0 };
     arr.forEach(el => {
@@ -28,7 +27,6 @@ function dailyDrawdown(arr) {
       }
       if (dayLow < trough) {
         trough = dayLow;
-        troughDate = date;
         newTrough = true;
       }
       // Calculate drawDown and push to the array
