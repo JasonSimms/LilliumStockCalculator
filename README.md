@@ -5,9 +5,10 @@ Evaluated with code controls from DeepScan :
 [![DeepScan grade](https://deepscan.io/api/projects/3366/branches/29890/badge/grade.svg)](https://deepscan.io/dashboard#view=project&pid=3366&bid=29890)
 
 ### To USE:
-1. clone this repository and $ cd LilliumStockCalculator && npm install
-2. $ node app/lillium.js or $ node app/lillium_hardCoded.js for repeated use or multiple stocks.
-3. Check console for a lovely printout!
+1. clone this repository
+2. $ cd LilliumStockCalculator && npm install
+3. $ node app/lillium.js or $ node app/lillium_hardCoded.js for repeated use or multiple stocks.
+4. Check console for a lovely printout!
 
 Requirements: Node.js & Npm & Internet Connection
 
