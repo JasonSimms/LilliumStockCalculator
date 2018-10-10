@@ -4,11 +4,11 @@ const config = require("./config");
 
 // USER INPUT - ADJUST EQUATION INPUTS
 // Stock Ticker
-const ticker = [`hd`]
+const ticker = [`aapl`]
 // Initial Date YYYY-MM-DD  **Blank will result in earliest available date
-const startDate = `2018-03-01`
+const startDate = `2018-01-01`
 // End Date YYYY-MM_DD  ** Blank will result in up price info up to today
-const endDate = `2018-03-25`
+const endDate = `2018-01-05`
 // API KEY **Create a config.js file that exports the key or simply enter below
 const apiKey = config.QuandlKey
 

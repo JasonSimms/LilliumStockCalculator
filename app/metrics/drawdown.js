@@ -11,7 +11,7 @@ function dailyDrawdown(arr) {
     let trough = arr[0][3];
     let troughDate;
     let drawDownArr = [];
-    let maximumDrawDown = { drawdown: 0 };
+    let maximumDrawDown = { drawDown: 0 };
     arr.forEach(el => {
       // Quandl Data Api returns an array of [Date, Open, High, Low, Close]
       let dayHigh = el[2];
@@ -34,7 +34,7 @@ function dailyDrawdown(arr) {
       let drawDown = Math.min(0, (((dayLow - peak) / peak) * 100).toFixed(1));
       if (newPeak || drawDownArr.length === 0) {
         drawDownArr.push({
-          drawdown: Number(drawDown),
+          drawDown: Number(drawDown),
           peak: peak,
           pDate: peakDate,
           trough: dayLow,
@@ -43,7 +43,7 @@ function dailyDrawdown(arr) {
       } else if (!newPeak && newTrough) {
         drawDownArr.pop();
         drawDownArr.push({
-          drawdown: Number(drawDown),
+          drawDown: Number(drawDown),
           peak: peak,
           pDate: peakDate,
           trough: dayLow,
@@ -52,9 +52,9 @@ function dailyDrawdown(arr) {
       }
 
       // Save the maximum drawdown
-      if (drawDown < maximumDrawDown.drawdown)
+      if (drawDown < maximumDrawDown.drawDown)
         maximumDrawDown = {
-          drawdown: Number(drawDown),
+          drawDown: Number(drawDown),
           peak: peak,
           pDate: peakDate,
           trough: dayLow,
@@ -62,26 +62,12 @@ function dailyDrawdown(arr) {
         };
     });
 
-    // BUILD CONSOLE DISPLAY STRINGS
-    maximumDrawDownOutput = `Maximum Drawdown: ${maximumDrawDown.drawdown}% (${
-      maximumDrawDown.peak
-    } on ${maximumDrawDown.pDate} -> ${maximumDrawDown.trough} on ${
-      maximumDrawDown.tDate
-    })
-`;
-    firstThreeDDOutput = `First 3 Drawdowns: 
-  ${drawDownArr[0].drawdown}% (${drawDownArr[0].peak} on ${
-      drawDownArr[0].pDate
-    } -> ${drawDownArr[0].trough} on ${drawDownArr[0].tDate})
-  ${drawDownArr[1].drawdown}% (${drawDownArr[1].peak} on ${
-      drawDownArr[1].pDate
-    } -> ${drawDownArr[1].trough} on ${drawDownArr[1].tDate})
-  ${drawDownArr[2].drawdown}% (${drawDownArr[2].peak} on ${
-      drawDownArr[2].pDate
-    } -> ${drawDownArr[2].trough} on ${drawDownArr[2].tDate})
-  `;
-    outputMessage = maximumDrawDownOutput + firstThreeDDOutput;
-    return outputMessage;
+    const ddOutput = {
+      maximumDrawDown: maximumDrawDown,
+      drawDownArr: drawDownArr,
+    }
+
+    return ddOutput
   }
 }
 

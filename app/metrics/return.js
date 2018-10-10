@@ -16,12 +16,18 @@ function rateOfReturn(arr) {
     let ror = endPrice - startPrice;
     let rorPercent = (ror / startPrice) * 100;
 
-    // Build Output String
-    outputMessage = `Return: $${ror.toFixed(2)} [${rorPercent.toFixed(
-      1
-    )}%] ( ${startPrice} on ${startDate} -> ${endPrice} on ${endDate} )
-    `;
-    return outputMessage;
+    rorOutput = {
+      return: ror,
+      returnP: rorPercent,
+      startDate: startDate,
+      startPrice: startPrice,
+      endDate: endDate,
+      endPrice: endPrice
+    }
+
+    return rorOutput
+
+   
   }
 }
 
