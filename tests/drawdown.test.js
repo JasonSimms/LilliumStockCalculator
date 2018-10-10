@@ -8,11 +8,11 @@ test(`Empty data array returns empty message`, () => {
 });
 
 test(`dailyDrawdown returns a string`, () => {
-  expect(typeof(dailyDrawdown(testData1))).toBe(`string`)
+  expect(typeof(dailyDrawdown(testData2))).toBe(`string`)
 });
 
 test('dailyDrawdown prints a title string', () => {
-  expect(dailyDrawdown(testData1)).toMatch(/Maximum Drawdown:/);
+  expect(dailyDrawdown(testData2)).toMatch(/Maximum Drawdown:/);
 });
 
 test('dailyDrawdown calculates Maximum Drawdown?', () => {

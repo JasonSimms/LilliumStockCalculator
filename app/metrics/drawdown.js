@@ -8,6 +8,8 @@ function dailyDrawdown(arr) {
   } else {
     let peak = 0;
     let peakDate;
+    let trough = arr[0][3];
+    let troughDate;
     let drawDownArr = [];
     let maximumDrawDown = { drawdown: 0 };
     arr.forEach(el => {
@@ -15,18 +17,39 @@ function dailyDrawdown(arr) {
       let dayHigh = el[2];
       let date = el[0];
       let dayLow = el[3];
+      let newPeak = false;
+      let newTrough = false;
+      // Cases for a new Drawdown are a fall from a new peak or a lower trough.
       if (dayHigh > peak) {
         peak = dayHigh;
         peakDate = date;
+        newPeak = true;
       }
+      if (dayLow < trough) {
+        trough = dayLow;
+        troughDate = date;
+        newTrough = true;
+      }
+      // Calculate drawDown and push to the array
       let drawDown = Math.min(0, (((dayLow - peak) / peak) * 100).toFixed(1));
-      drawDownArr.push({
-        drawdown: Number(drawDown),
-        peak: peak,
-        pDate: peakDate,
-        trough: dayLow,
-        tDate: date
-      });
+      if (newPeak || drawDownArr.length === 0) {
+        drawDownArr.push({
+          drawdown: Number(drawDown),
+          peak: peak,
+          pDate: peakDate,
+          trough: dayLow,
+          tDate: date
+        });
+      } else if (!newPeak && newTrough) {
+        drawDownArr.pop();
+        drawDownArr.push({
+          drawdown: Number(drawDown),
+          peak: peak,
+          pDate: peakDate,
+          trough: dayLow,
+          tDate: date
+        });
+      }
 
       // Save the maximum drawdown
       if (drawDown < maximumDrawDown.drawdown)
