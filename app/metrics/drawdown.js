@@ -36,8 +36,8 @@ function dailyDrawdown(arr) {
   ${ddArr[1].drawdown}% (${ddArr[1].peak} on ${ddArr[1].pDate} -> ${ddArr[1].trough} on ${ddArr[1].tDate})
   ${ddArr[2].drawdown}% (${ddArr[2].peak} on ${ddArr[2].pDate} -> ${ddArr[2].trough} on ${ddArr[2].tDate})
   `
-    console.log(maxDDOutput);
-    console.log(firstThreeDDOutput);
+    return(maxDDOutput);
+    // return(firstThreeDDOutput);
   }
 
   module.exports = dailyDrawdown

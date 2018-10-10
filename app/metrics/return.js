@@ -6,7 +6,9 @@ function rateOfReturn(arrStart, arrEnd) {
       arrStart[4]
     } on ${arrStart[0]} -> ${arrEnd[4]} on ${arrEnd[0]} )
     `;
-    console.log(rorOutputString);
+    // console.log(rorOutputString);
+    return(rorOutputString);
+
   }
 
   module.exports = rateOfReturn

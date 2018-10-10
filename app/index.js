@@ -1,25 +1,34 @@
-const lillium = require('./backend')
-const config = require("./config");
+const axios = require("axios");
+const rateOfReturn = require("./metrics/return")
+const dailyDrawdown = require("./metrics/drawdown")
+const printEOD = require("./metrics/EODprint")
 
-// USER INPUT - ADJUST EQUATION INPUTS
+// Function requests price data using variables provided by user
+module.exports = function Lillium(stock, dayInit, dayEnd, key) {
+// const apiUrl = `https://www.quandl.com/api/v3/datasets/WIKI/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&order=asc&api_key=${key}`
+const apiUrl = `https://www.quandl.com/api/v3/datasets/EOD/${stock}.json?start_date=${dayInit}&end_date=${dayEnd}&order=asc&api_key=${key}`
 
-// Stock Ticker
-const ticker = [`aapl`]
-// Initial Date YYYY-MM-DD  **Must be before 2018-03-27 when using Quandl
-const startDate = `2018-03-01`
-// End Date YYYY-MM_DD  **Data Only Available up to 2018-03-27
-const endDate = `2018-10-25`
-// API KEY **Create a config.js file that exports the key or simply enter below
-const apiKey = config.QuandlKey
-
-
-console.log(`Lillium Calculator initiated for stock(s): ${ticker} between ${startDate} - ${endDate} on key:${apiKey}` )
-
-// Lillium(ticker,startDate,endDate,apiKey)
-ticker.forEach(stock => lillium(stock,startDate,endDate,apiKey))
-
-
-function sum(a, b) {
-    return a + b;
-  }
-  module.exports = sum;
+  axios
+    .get(
+      apiUrl
+    )
+    .then(function(response) {
+      const data = response.data.dataset.data;
+      if (data.length === 0)
+        console.log(
+          `Source has no price data for this time range try before 2018-03-27`
+        );
+      if (data.length > 0) {
+        console.time("Execution time");
+        console.log(`-------------Begin Data for ${stock}------------`);
+        console.log(rateOfReturn(data[0], data[data.length - 1]))
+        console.log(dailyDrawdown(data))
+        printEOD(data)
+        console.log(`-------------End of Data for ${stock}------------`);
+        console.timeEnd("Execution time");
+      }
+    })
+    .catch(function(error) {
+      console.log(error.message,error.response.data.quandl_error);
+    });
+};
