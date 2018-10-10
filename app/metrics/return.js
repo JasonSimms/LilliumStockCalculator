@@ -1,14 +1,24 @@
 // Function prints Return on investment
-function rateOfReturn(arrStart, arrEnd) {
-    let ror = arrEnd[4] - arrStart[4];
-    let rorPercent = (ror / arrStart[4]) * 100;
-    rorOutputString = `Return: $${ror.toFixed(2)} [${rorPercent.toFixed(1)}%] ( ${
-      arrStart[4]
-    } on ${arrStart[0]} -> ${arrEnd[4]} on ${arrEnd[0]} )
+
+//QUANDL presents stock information in an array [date, open, high, low, close,...]
+//To use other sources adjust variables line 5 - 8.
+function rateOfReturn(arr) {
+  // Data needed for calculations and message
+  let endPrice = arr[arr.length-1][4];
+  let endDate = arr[arr.length-1][0];
+  let startPrice = arr[0][4];
+  let startDate = arr[0][0];
+
+  // Calculate Return & Return %
+  let ror = endPrice - startPrice;
+  let rorPercent = (ror / startPrice) * 100;
+
+  // Build Output String
+  outputMessage = `Return: $${ror.toFixed(2)} [${rorPercent.toFixed(
+    1
+  )}%] ( ${startPrice} on ${startDate} -> ${endPrice} on ${endDate} )
     `;
-    // console.log(rorOutputString);
-    return(rorOutputString);
+  return outputMessage;
+}
 
-  }
-
-  module.exports = rateOfReturn
+module.exports = rateOfReturn;

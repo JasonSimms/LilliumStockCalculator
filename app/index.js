@@ -2,6 +2,8 @@ const axios = require("axios");
 const rateOfReturn = require("./metrics/return")
 const dailyDrawdown = require("./metrics/drawdown")
 const printEOD = require("./metrics/EODprint")
+var colors = require('colors');
+
 
 // Function requests price data using variables provided by user
 module.exports = function Lillium(stock, dayInit, dayEnd, key) {
@@ -20,12 +22,12 @@ const apiUrl = `https://www.quandl.com/api/v3/datasets/EOD/${stock}.json?start_d
         );
       if (data.length > 0) {
         console.time("Execution time");
-        console.log(`-------------Begin Data for ${stock}------------`);
-        console.log(rateOfReturn(data[0], data[data.length - 1]))
-        dailyDrawdown(data)
-        printEOD(data)
-        console.log(`-------------End of Data for ${stock}------------`);
-        console.timeEnd("Execution time");
+        console.log(`-------------Begin Data for ${stock}------------`.grey);
+        console.log(rateOfReturn(data).bold)
+        console.log(dailyDrawdown(data))
+        console.log(printEOD(data))
+        console.log(`-------------End of Data for ${stock}------------`.grey);
+        console.timeEnd(`Execution time`);
       }
     })
     .catch(function(error) {

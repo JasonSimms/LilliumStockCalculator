@@ -1,44 +1,51 @@
 // Function  prints Max Drawdown and array of daily drawdowns
-// Drowdowns occur only when a new peak is reached
+
+//QUANDL presents stock information in an array [date, open, high, low, close,...]
+//To use other sources adjust variables line 12 - 14.
 function dailyDrawdown(arr) {
     let peak = 0;
     let peakDate;
-    let ddArr = [];
-    let maxDD = {drawdown: 0};
+    let drawDownArr = [];
+    let maximumDrawDown = {drawdown: 0};
     arr.forEach(el => {
-      if (el[2] > peak) {
-        peak = el[2];
-        peakDate = el[0];
+      // Quandl Data Api returns an array of [Date, Open, High, Low, Close]
+      let dayHigh = el[2];
+      let date = el[0];
+      let dayLow = el[3]
+      if (dayHigh > peak) {
+        peak =dayHigh;
+        peakDate = date;
       }
-      let drawDown = Math.min(0, (((el[3] - peak) / peak) * 100).toFixed(1));
-      ddArr.push({
+      let drawDown = Math.min(0, (((dayLow - peak) / peak) * 100).toFixed(1));
+      drawDownArr.push({
         drawdown: Number(drawDown),
         peak: peak,
         pDate: peakDate,
-        trough: el[3],
-        tDate: el[0]
+        trough: dayLow,
+        tDate: date
       });
   
-      // store maximum drawdown
-      if (drawDown < maxDD.drawdown)
-        maxDD = {
+      // Save the maximum drawdown
+      if (drawDown < maximumDrawDown.drawdown)
+        maximumDrawDown = {
           drawdown: Number(drawDown),
           peak: peak,
           pDate: peakDate,
-          trough: el[3],
-          tDate: el[0]
+          trough: dayLow,
+          tDate: date
         };
     });
-  maxDDOutput = `Maximium Drawdown: ${maxDD.drawdown}% (${maxDD.peak} on ${maxDD.pDate} -> ${maxDD.trough} on ${maxDD.tDate})
+
+  // BUILD CONSOLE DISPLAY STRINGS
+  maximumDrawDownOutput = `Maximum Drawdown: ${maximumDrawDown.drawdown}% (${maximumDrawDown.peak} on ${maximumDrawDown.pDate} -> ${maximumDrawDown.trough} on ${maximumDrawDown.tDate})
 `
   firstThreeDDOutput = `First 3 Drawdowns: 
-  ${ddArr[0].drawdown}% (${ddArr[0].peak} on ${ddArr[0].pDate} -> ${ddArr[0].trough} on ${ddArr[0].tDate})
-  ${ddArr[1].drawdown}% (${ddArr[1].peak} on ${ddArr[1].pDate} -> ${ddArr[1].trough} on ${ddArr[1].tDate})
-  ${ddArr[2].drawdown}% (${ddArr[2].peak} on ${ddArr[2].pDate} -> ${ddArr[2].trough} on ${ddArr[2].tDate})
+  ${drawDownArr[0].drawdown}% (${drawDownArr[0].peak} on ${drawDownArr[0].pDate} -> ${drawDownArr[0].trough} on ${drawDownArr[0].tDate})
+  ${drawDownArr[1].drawdown}% (${drawDownArr[1].peak} on ${drawDownArr[1].pDate} -> ${drawDownArr[1].trough} on ${drawDownArr[1].tDate})
+  ${drawDownArr[2].drawdown}% (${drawDownArr[2].peak} on ${drawDownArr[2].pDate} -> ${drawDownArr[2].trough} on ${drawDownArr[2].tDate})
   `
-    // return(maxDDOutput);
-    // return(firstThreeDDOutput);
-    console.log(maxDDOutput + firstThreeDDOutput)
+    outputMessage = maximumDrawDownOutput+firstThreeDDOutput
+    return(outputMessage)
   }
 
   module.exports = dailyDrawdown
